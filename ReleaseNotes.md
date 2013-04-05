@@ -6,7 +6,7 @@ Note that, while we are stabilizing the API, some changes may occur between this
 
 Here are a quick view of the 0.8⇒0.9 changes:
 
-## Improved commands
+### Improved commands
 
 …
 
@@ -14,7 +14,7 @@ Here are a quick view of the 0.8⇒0.9 changes:
 
 > il faut notamment bien expliquer la signature qui n'est pas franchement évidente de prime abord
 
-## BSON library
+### BSON library
 
 We made some hehe changes under the ground to provide 2 super nice features: sweet BSONDocument creation (à la Json.obj) and macro ☺
 
@@ -63,13 +63,13 @@ implicit val writer = Macro.writer[User]
 ```
 
 
-## Collections have been refactored and greatly improved
+### Collections have been refactored and greatly improved
 
 We changed the global architecture in order to separate the MongoDB's “collection” concept and the API to use them.
 
 It is now possible (and relatively easy) to implement your own Collection, and then create an abstraction layer without requiring an ORM.
 
-### Smooth integration of the QueryBuilder
+#### Smooth integration of the QueryBuilder
 
 The QueryBuilder and the Collection have been merged the resulting new Collection API is far more friendly.
 
@@ -99,7 +99,7 @@ collection.find(BSONDocument("name" -> "foo"))
 
 The collection returns a QueryBuilder object to allow modifications, then the `cursor` method performs the request and returns a cursor representation (which can be transform into Future or Enumerator).
 
-### Specialized collections
+#### Specialized collections
 
 In a Play! application, it is usual to specify how to import/export the model in JSON format (to communicate with browser for instance), and sometimes the chosen format is exactly the same that the one you would used for database. For instance, if you used `Json.format[User]`.
 In such cases, you have to retrieve JsValue from MongoDB, and then to manually use JSON's formatter to instantiate your model.
@@ -119,7 +119,7 @@ coll.find(BSONDocument("name" -> "foo")).cursor[User]
 
 This specific collection belongs the the Play! plugin because it is linked to the Play!'s JSON API, but of course this plugin is _not_ mandatory to build your own specialized collection ;-)
 
-## GridFS support
+### GridFS support
 
 …
 
